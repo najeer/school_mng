@@ -1,0 +1,83 @@
+<%= form_for(@addimition) do |f| %>
+<!-- <% if @addimition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@addimition.errors.count, "error") %> prohibited this addimition from being saved:</h2>
+
+      <ul>
+      <% @addimition.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>-->
+
+  <div class="control-group">
+    <%= f.label :Name_of_student, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :student_name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :Father_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :father_name, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :select_class, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :class_type, options_for_select(Addimition::CLASS_TYPE, f.object.class_type) , :include_blank =>true ,:prompt => "Select Class"%>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :Date_of_brith, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :dob, :class => 'text_field', :id => "datepicker" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :Gernder, :class => 'control-label' %>
+    
+     <% ["Male", "Female","other"].each do |opt| %>
+      
+        <%= f.radio_button :gender, opt, :class => "radio" %><%= opt %>
+    
+    <% end %>
+      
+  </div>
+  <div class="control-group">
+    <%= f.label :parrent_emailid, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :parrent_emailid, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :phone_number, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :phone, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :Address, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :adress, :class => 'text_area' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :Picture, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :photo %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                users_path, :class => 'btn' %>
+  </div>
+
+
+<div class="actions">
+    <%= f.submit %>
+  </div>
+  <% end %>

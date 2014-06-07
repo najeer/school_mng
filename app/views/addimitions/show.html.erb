@@ -1,0 +1,27 @@
+<div class="page-header">
+  <h1>Student details</h1>
+</div>
+<%= image_tag @addimition.photo(:thumb) %>
+ <table width="100%">
+          <tbody>
+            <tr valign="top">
+              <td align="left" style="width:190px;text-align:left;">
+                <table  style="width:50%;">
+                <tr><th>student name</th><td> <%= @addimition.student_name %></td></tr>
+                <tr><th>father name</th><td><%= @addimition.father_name %></td></tr>
+                <tr><th>class</th><td><%= @addimition.class_type %></td></tr>
+                <tr><th>Gender</th><td><%= @addimition.gender %></td></tr>
+                <tr><th>Date of brith</th><td><%= @addimition.dob %></td></tr>
+                <tr><th>phone no</th><td><%= @addimition.phone %></td></tr>
+                <tr><th>Address</th><td><%= @addimition.adress %></td></tr>
+                <tr><th>Parent Email id</th><td><%= @addimition.parrent_emailid %></td></tr>
+              </table>
+        </table> 
+<div class="form-actions">
+ 
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_addimition_path(@addimition), :class => 'btn' %>
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              addimitions_path(), :class => 'btn' %>
+ 
+</div>
