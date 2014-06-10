@@ -12,6 +12,7 @@ gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'
 gem "therubyracer"
 gem "less-rails"
 gem "bcrypt-ruby", :require => "bcrypt"
+gem 'kaminari'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

@@ -1,21 +1,47 @@
-<!--<h1>Listing addimitions</h1>
+<div class="page-header">
+<h3>Listing addimitions</h3>
+<div align ="right" style = "width:85%;">
+  <%= link_to 'New Addimition', new_addimition_path, :class => 'btn'%>
+</div>
+<%= form_tag addimitions_path, :method => 'get' do %>  
+      <p> 
+        <div style="float:left; padding-left:95px;" >
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @addimitions.each do |addimition| %>
-  <tr>
-    <td><%= link_to 'Show', addimition %></td>
-    <td><%= link_to 'Edit', edit_addimition_path(addimition) %></td>
-    <td><%= link_to 'Destroy', addimition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+       <%= text_field_tag :search, params[:search] %>  
+        <%= submit_tag "Search", :name => nil %> 
+        </div>
+      </p>  
+    <% end %>  
+<table class="tablesorter" id="addimition_table" style="width:85%;border:1px solid; align:center;" align="center">
+  <thead>
+    <tr style="height:50px ">
+      <th>Student Name</th>
+      <th>Father name</th>
+      <th>Phone Number</th>
+      <th>Class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @addimitions.each do |addimition| %>
+      <tr style="height:10px">
+        <td><%= link_to image_tag( addimition.photo.url  ,:size => "15x20") , addimition_path(addimition) %></td>
+        <td><%= addimition.student_name %></td>
+        <td><%= addimition.father_name %></td>
+        <td><%= addimition.phone %></td>
+        <td><%= addimition.class_type %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
+<div style="float:right; padding-right:28px;">
+<%= paginate @addimitions %> 
+ </div>
+</div>
+<%= stylesheet_link_tag 'tablesorter.css' %>
+<%= javascript_include_tag  'jquery.tablesorter.min' %>
+<script type="text/javascript">
 
-<br /> -->
-
-<%= link_to 'New Addimition', new_addimition_path %>
+$(document).ready(function() { 
+    $("#addimition_table").tablesorter({   });  
+  } 
+</script>

@@ -1,16 +1,4 @@
-<%= form_for(@addimition) do |f| %>
-<!-- <% if @addimition.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@addimition.errors.count, "error") %> prohibited this addimition from being saved:</h2>
-
-      <ul>
-      <% @addimition.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>-->
-
+<%= form_for @addimition, :html => { :class => 'form-horizontal addimition_form' } do |f| %>
   <div class="control-group">
     <%= f.label :Name_of_student, :class => 'control-label' %>
     <div class="controls">
@@ -35,20 +23,11 @@
       <%= f.text_field :dob, :class => 'text_field', :id => "datepicker" %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :Gernder, :class => 'control-label' %>
-    
-     <% ["Male", "Female","other"].each do |opt| %>
-      
-        <%= f.radio_button :gender, opt, :class => "radio" %><%= opt %>
-    
-    <% end %>
-      
-  </div>
+  
   <div class="control-group">
     <%= f.label :parrent_emailid, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :parrent_emailid, :class => 'text_field' %>
+      <%= f.email_field :parrent_emailid, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
@@ -60,7 +39,12 @@
   <div class="control-group">
     <%= f.label :Address, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :adress, :class => 'text_area' %>
+      <%= f.text_area :adress,
+                :rows => 3,
+                :cols => 60 ,
+                :maxlength => 140,
+                :autocomplete => :off,
+                :class => "textareabytes" %>
     </div>
   </div>
   <div class="control-group">
@@ -75,9 +59,70 @@
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 users_path, :class => 'btn' %>
   </div>
-
-
-<div class="actions">
-    <%= f.submit %>
-  </div>
   <% end %>
+  <%= stylesheet_link_tag "jquery-ui" %>
+<%= javascript_include_tag  "jquery-1.9.1.js", 'jquery-ui', 'jquery.validate.js', 'jquery.validate.min.js' %>
+<script>
+  
+
+function  validate_function(){
+$(".addimition_form").validate({
+  rules: {
+    "addimition[student_name]": {
+      required: true,
+      minlength: 4
+    },
+    "addimition[father_name]": {
+      required: true,
+    },
+    "addimition[class_type]": {
+      required: true,
+    },
+    "addimition[dob]": {
+      required: true,
+    },
+    "addimition[parrent_emailid]": {
+      required: true,
+      parrent_emailid: true
+    },
+    "addimition[phone]": {
+      required: true,
+      minlength:10
+    },
+    "addimition[adress]": {
+      required: true,
+    }
+  },
+  messages: {
+   "addimition[student_name]" : {
+      required: "Name should not be blank",
+      minlength: jQuery.format("At least {0} characters required!")
+    },
+    "addimition[father_name]" : {
+      required: "father name should not be blank",
+    },
+    "addimition[class_type]" : {
+      required: "please select the class",
+    },
+    "addimition[dob]" : {
+      required: "select date of brith",
+    },
+    "addimition[parrent_emailid]" : {
+      required: "We need your email address to contact you",
+      parrent_emailid: "Your email address must be in the format of name@domain.com"
+    },
+    "addimition[phone]" : {
+      required: "we need ur phone number for contact you",
+      minlength: jQuery.format("enter valid phone number")
+    },
+    "addimition[adress]" : {
+      required: "Fill your full address for contact you",
+    }
+  }
+});
+}
+$(document).ready(function() {
+  validate_function(); 
+$( "#datepicker" ).datepicker();
+ });
+</script>

@@ -10,7 +10,7 @@
                 <tr><th>student name</th><td> <%= @addimition.student_name %></td></tr>
                 <tr><th>father name</th><td><%= @addimition.father_name %></td></tr>
                 <tr><th>class</th><td><%= @addimition.class_type %></td></tr>
-                <tr><th>Gender</th><td><%= @addimition.gender %></td></tr>
+                
                 <tr><th>Date of brith</th><td><%= @addimition.dob %></td></tr>
                 <tr><th>phone no</th><td><%= @addimition.phone %></td></tr>
                 <tr><th>Address</th><td><%= @addimition.adress %></td></tr>
@@ -20,8 +20,17 @@
 <div class="form-actions">
  
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_addimition_path(@addimition), :class => 'btn' %>
+              edit_addimition_path(@addimition), :class => 'btn',:rel => "facebox" %>
   <%= link_to t('.back', :default => t("helpers.links.back")),
               addimitions_path(), :class => 'btn' %>
  
 </div>
+<%= stylesheet_link_tag "jquery-ui" %>
+<%= stylesheet_link_tag "facebox" %>
+<%= javascript_include_tag  "jquery-1.9.1.js", 'jquery-ui', 'jquery.validate.js', 'jquery.validate.min.js' %>
+<%= javascript_include_tag "facebox.js" %>
+<script>  
+ jQuery(document).ready(function() {  
+  $('a[rel*=facebox]').facebox();
+ });
+</script>

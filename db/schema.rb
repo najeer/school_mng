@@ -11,13 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140607121604) do
+ActiveRecord::Schema.define(:version => 20140606190043) do
 
   create_table "addimitions", :force => true do |t|
     t.string   "student_name"
     t.string   "father_name"
     t.string   "class_type"
-    t.boolean  "gender"
     t.date     "dob"
     t.string   "phone"
     t.string   "adress"
