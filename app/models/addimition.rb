@@ -8,7 +8,7 @@ attr_accessible :student_name, :father_name, :class_type, :gender, :dob, :phone,
    # validates :father_name,  : presence => true
 		validates_presence_of :class_type
     #validates :class_type,  : presence => true
-		#validates_presence_of :gender
+		validates_presence_of :gender
     #validates :gender,  : presence => true
 		validates_presence_of :dob
     #validates :dob,  : presence => true
@@ -25,19 +25,21 @@ attr_accessible :student_name, :father_name, :class_type, :gender, :dob, :phone,
   
 
   # validates_attachment :photo, content_type: { content_type: ["photo/jpg", "photo/jpeg", "photo/png", "photo/gif"] }
-  validates_uniqueness_of :parrent_emailid, :on => :create
+  validates_uniqueness_of :parrent_emailid, :on => :create, :message => 'enter uni'
   has_attached_file :photo , :styles => 
         { :medium => "300x300>", :thumb => "100x100>" } 
   do_not_validate_attachment_file_type :photo
 
-  def self.search(search)  
-    if search  
-      where("student_name LIKE ?", "%#{search}%")  
-    else  
-      scoped  
-    end  
-  end  
-
+  
+  def self.search(search1, search2) 
+    if search1.present?
+          where('student_name LIKE ?', "%#{search1}%")
+            elsif search2.present?
+              where('class_type LIKE ?', "%#{search2}%") 
+                   else  
+                         scoped  
+             end  
+   end
 
   def activate
      self.status = 1

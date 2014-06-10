@@ -3,9 +3,9 @@ class AddimitionsController < ApplicationController
   # GET /addimitions.json
   def index
     # @addimitions = Addimition.all
-
+@addimitions = Addimition.search(params[:search1], params[:search2]).order("student_name").page(params[:page]).per(5)
   #@addimitions = Addimition.all.page(params[:page])
-  @addimitions = Addimition.search(params[:search]).order("student_name").page(params[:page]).per(5)
+  #@addimitions = Addimition.search(params[:search]).order("class_type").page(params[:page]).per(5)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @addimitions }

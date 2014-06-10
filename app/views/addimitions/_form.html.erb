@@ -18,6 +18,12 @@
     </div>
   </div>
   <div class="control-group">
+    <%= f.label :gender, :class => 'control-label' %>
+    <div class="controls">
+    <%= f.select :gender, options_for_select(["Male", "Female"]),:prompt => "Select"%>
+    </div>
+  </div>
+  <div class="control-group">
     <%= f.label :Date_of_brith, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :dob, :class => 'text_field', :id => "datepicker" %>
@@ -78,6 +84,9 @@ $(".addimition_form").validate({
     "addimition[class_type]": {
       required: true,
     },
+    "addimition[gender]": {
+      required: true,
+    },
     "addimition[dob]": {
       required: true,
     },
@@ -87,7 +96,8 @@ $(".addimition_form").validate({
     },
     "addimition[phone]": {
       required: true,
-      minlength:10
+      number: true,
+      minlength:10,
     },
     "addimition[adress]": {
       required: true,
@@ -104,6 +114,9 @@ $(".addimition_form").validate({
     "addimition[class_type]" : {
       required: "please select the class",
     },
+    "addimition[gender]" : {
+      required: "select the gender",
+    },
     "addimition[dob]" : {
       required: "select date of brith",
     },
@@ -113,7 +126,7 @@ $(".addimition_form").validate({
     },
     "addimition[phone]" : {
       required: "we need ur phone number for contact you",
-      minlength: jQuery.format("enter valid phone number")
+      
     },
     "addimition[adress]" : {
       required: "Fill your full address for contact you",
